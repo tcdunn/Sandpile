@@ -3,21 +3,21 @@
 #include <stdlib.h>
 #include <string.h>
 int main(int argc, char *argv[]){
-  int x,y,h;
+  char x,y,h;
   int place = 3;
-  int grid[5][5];
+  char grid[5][5];
 
   if(argv[1] == "--fps"){
     place = 1;
   }
 
   for(int i = place; i < argc; i+=3){
-    sscanf(argv[i], "%d", &y);
-    sscanf(argv[i+1], "%d", &x);
-    sscanf(argv[i+2], "%d", &h);
+    sscanf(argv[i], "%c", &y);
+    sscanf(argv[i+1], "%c", &x);
+    sscanf(argv[i+2], "%c", &h);
 
     if(h<0){
-      grid[x][y] = 4;
+      grid[x][y] = '#';
     }else{
       grid[x][y] = h;
     }
@@ -25,11 +25,9 @@ int main(int argc, char *argv[]){
 
   for(int k = 0; k < 5; k++){
     for(int j = 0; j < 5; j++){
-      printf("%d", grid[k][j]);
+      printf("%c", grid[k][j]);
     }
     printf("\n");
   }
-
-  return 0;
   
 }
