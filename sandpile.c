@@ -11,6 +11,8 @@ int main(int argc, char *argv[]){
     place = 1;
   }
 
+  //fellas
+
   for(int i = place; i < argc; i+=3){
     sscanf(argv[i], "%d", &y);
     sscanf(argv[i+1], "%d", &x);
@@ -33,3 +35,5 @@ int main(int argc, char *argv[]){
   return 0;
   
 }
+
+
