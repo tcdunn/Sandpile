@@ -3,8 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 int main(int argc, char *argv[]){
+  
   //grid elements- x axis, y axis, height
-  int x,y,h = 0;
+  int x,y,h;
   //incrementors
   int i, j, k, l, m, n;
   //fps variable
@@ -23,7 +24,9 @@ int main(int argc, char *argv[]){
     }
   }
 
-  if(argc > 1 && strcmp(argv[1], "--fps")){
+  /**if there are more than 2 arguments passed(besides the name) && the first arg after
+     the name is the --fps tag, then set place to after the fps value*/
+  if(argc > 2 && strcmp(argv[1], "--fps")){
     place = 3;
     fps = atoi(argv[2]);
   }
@@ -33,18 +36,23 @@ int main(int argc, char *argv[]){
     //sscanf(argv[i], "%d", &y);
     //sscanf(argv[i+1], "%d", &x);
     //sscanf(argv[i+2], "%d", &h);
-    y = atoi(argv[i]);
-    x = atoi(argv[i+1]);
-    h = atoi(argv[i+2]);
+    y = atoi(&argv[i]);
+    x = atoi(&argv[i+1]);
+    h = atoi(&argv[i+2]);
 
-    if(h<0 && x != 11 && y != 11){
+    //testing line
+    printf("Y: %d, X: %d, H: %d", y, x, h);
+
+    if(h < 0 && x != 11 && y != 11){
       //below line works
-      grid[x][y] = "#";
+      grid[x][y] = (char)grid[x][y];
+      grid[x][y] = '#';
     }else{
       grid[x][y] = h;
     }
   }
 
+  //print the grid
   for(int k = 0; k < gridSize; k++){
     for(int j = 0; j < gridSize; j++){
       printf("%d", grid[k][j]);
