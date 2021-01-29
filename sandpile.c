@@ -4,7 +4,7 @@
 #include <string.h>
 int main(int argc, char *argv[]){
   //grid elements- x axis, y axis, height
-  int x,y,h;
+  int x,y,h = 0;
   //incrementors
   int i, j, k, l, m, n;
   //fps variable
@@ -28,15 +28,17 @@ int main(int argc, char *argv[]){
     fps = atoi(argv[2]);
   }
 
+  //somewhere in this for loop lies our segmentation fault(s)...
   for(int i = place; i < argc; i+=3){
-    /**sscanf(argv[i], "%d", &y);
-    sscanf(argv[i+1], "%d", &x);
-    sscanf(argv[i+2], "%d", &h);*/
+    //sscanf(argv[i], "%d", &y);
+    //sscanf(argv[i+1], "%d", &x);
+    //sscanf(argv[i+2], "%d", &h);
     y = atoi(argv[i]);
     x = atoi(argv[i+1]);
     h = atoi(argv[i+2]);
 
     if(h<0 && x != 11 && y != 11){
+      //below line works
       grid[x][y] = "#";
     }else{
       grid[x][y] = h;
