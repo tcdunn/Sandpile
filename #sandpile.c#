@@ -55,5 +55,17 @@ int main(int argc, char *argv[]){
 
   return 0;
 
+  void addSand(char grid[gridSize][gridSize], int fps){
+    int valuesHolder[1058]
+    for(int x = 0; x < gridSize; x++){
+      for(int y = 0; y < gridSize; y++){
+	int num = grid[x][y];
+	valeusHolder[x+y*gridSize] = num;
+      }
+    }
+   
+    
+  }
+
   
 }
