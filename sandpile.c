@@ -4,6 +4,9 @@
 int main(int argc, char *argv[]){
   //grid elements- x axis, y axis, height
   int x,y,h;
+
+  //variables used to pass in as parameters for add sand
+  int ux = 11, uy = 11;
   
   //incrementors
   int p, q, i, k, j;
@@ -55,9 +58,63 @@ int main(int argc, char *argv[]){
     printf("\n");
   }
 
+  
+
+  while(1){
+    /*
+      1. print grid
+      2. add sand
+      3. repeat
+     */
+    printGrid(grid);
+    addSand(grid, ux, uy);
+
+  }
+
+
+  
+
   return 0;
 
   
+}
+
+ void addSand(int grid[][], int x, int y){
+    grid[x][y]++;
+    if(grid[x][y] > 8){
+	grid[x][y] = 0;
+	addNeighbors(grid, x, y);
+    }
+  }
+
+  void addNeighbors(int grid[][], int x, int y){
+    for(int i = x -1; i < x + 1; i++){
+      for(int j = y - 1; j < y + 1; j++){
+	if(i < gridSize && i >= 0 && j < gridSize && j >= 0){
+	  grid[i][j]++;
+	  if(grid[i][j] > 8){
+	    addSand(grid, i, j);
+	  }
+	}
+      }
+    }
+   }
+
+void printGrid(int grid[][]){
+  int i, j;
+  for(i = 0; i < 23; i++){
+    for(j = 0; j < 23; j++){
+      if(grid[i][j] < 0){
+	printf("#");
+      }else{
+	printf("%d", grid[i][j]);
+      }
+    }
+    printf("\n");
+  }
+
+  printf("\n");
+    
 }
 
 
