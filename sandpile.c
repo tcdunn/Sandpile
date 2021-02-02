@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+void printGrid(int grid[5][5]);
+
+void addNeighbors(int grid[5][5], int x, int y);
+
+void addSand(int grid[5][5], int x, int y);
+
 int main(int argc, char *argv[]){
   //grid elements- x axis, y axis, height
   int x,y,h;
@@ -11,21 +18,20 @@ int main(int argc, char *argv[]){
   //incrementors
   int p, q, i, k, j;
   
-  //pointer for the values to go inside the initial grid
-  char* s;
+
 
   /**place will start iterations through cmdline arguments at place 1(right after the name)
      as long as there is no --fps tag(see line 15)*/
   int place = 1;
   //custom size of grid for testing smaller grids
   int gridSize = 5;
-  char grid[gridSize][gridSize];
+  int grid[gridSize][gridSize];
   
   int fps = 30;
   //initialize the grid
   for(int p = 0; p < 5; p++){
     for(int q = 0; q < 5; q++){
-      grid[p][q] = '0';
+      grid[p][q] = 0;
     }
   }
 
@@ -41,34 +47,26 @@ int main(int argc, char *argv[]){
      x = atoi(argv[i]);
      y = atoi(argv[i+1]);
      h = atoi(argv[i+2]);
-     s = argv[i+2];
      
     if(h<0 && x != 11 && y != 11){
-      grid[x][y] = '#';
+      grid[x][y] = -1;
     }else{
-      grid[x][y] = *s;
+      grid[x][y] = h;
     }
-  }
-
-  //print initial grid
-  for(int k = 0; k < 5; k++){
-    for(int j = 0; j < 5; j++){
-      printf("%c", grid[k][j]);
-    }
-    printf("\n");
   }
 
   
 
-  while(1){
+  
+ 
+   while(1){
     /*
       1. print grid
       2. add sand
       3. repeat
      */
-    printGrid(grid);
-    addSand(grid, ux, uy);
-
+     printGrid(grid);
+     addSand(grid, ux, uy);
   }
 
 
@@ -79,7 +77,8 @@ int main(int argc, char *argv[]){
   
 }
 
- void addSand(int grid[][], int x, int y){
+
+ void addSand(int grid[5][5], int x, int y){
     grid[x][y]++;
     if(grid[x][y] > 8){
 	grid[x][y] = 0;
@@ -87,10 +86,10 @@ int main(int argc, char *argv[]){
     }
   }
 
-  void addNeighbors(int grid[][], int x, int y){
+  void addNeighbors(int grid[5][5], int x, int y){
     for(int i = x -1; i < x + 1; i++){
       for(int j = y - 1; j < y + 1; j++){
-	if(i < gridSize && i >= 0 && j < gridSize && j >= 0){
+	if(i < 5 && i >= 0 && j < 5 && j >= 0){
 	  grid[i][j]++;
 	  if(grid[i][j] > 8){
 	    addSand(grid, i, j);
@@ -100,10 +99,10 @@ int main(int argc, char *argv[]){
     }
    }
 
-void printGrid(int grid[][]){
+void printGrid(int grid[5][5]){
   int i, j;
-  for(i = 0; i < 23; i++){
-    for(j = 0; j < 23; j++){
+  for(i = 0; i < 5; i++){
+    for(j = 0; j < 5; j++){
       if(grid[i][j] < 0){
 	printf("#");
       }else{
@@ -116,6 +115,7 @@ void printGrid(int grid[][]){
   printf("\n");
     
 }
+
 
 
 
